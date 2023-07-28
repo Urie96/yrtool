@@ -3,7 +3,7 @@
   "displayName": "yrtool",
   "description": "",
   "publisher": "urie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/Urie96/yrtool.git",
   "engines": {
     "vscode": "^1.60.0"
