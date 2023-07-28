@@ -1,0 +1,159 @@
+{
+  "name": "yrtool",
+  "displayName": "yrtool",
+  "description": "",
+  "publisher": "urie",
+  "version": "0.0.1",
+  "repository": "https://github.com/Urie96/yrtool.git",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "yrtool.stringify",
+        "title": "转为字符串",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.unstringify",
+        "title": "解开字符串",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.minifyJSON",
+        "title": "压缩JSON",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.formatJSON",
+        "title": "格式化JSON",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.encodeBase64",
+        "title": "Base64加密",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.decodeBase64",
+        "title": "Base64解密",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.sendRequest",
+        "title": "发送Thrift请求",
+        "category": "YR"
+      },
+      {
+        "command": "yrtool.copyPathLine",
+        "title": "复制路径:行号",
+        "category": "YR"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "yrtool.transform",
+          "group": "1_modification",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "yrtool.copyPathLine",
+          "group": "1_modification"
+        }
+      ],
+      "yrtool.transform": [
+        {
+          "command": "yrtool.minifyJSON",
+          "group": "transform@1"
+        },
+        {
+          "command": "yrtool.formatJSON",
+          "group": "transform@2"
+        },
+        {
+          "command": "yrtool.stringify",
+          "group": "transform@3"
+        },
+        {
+          "command": "yrtool.unstringify",
+          "group": "transform@4"
+        },
+        {
+          "command": "yrtool.encodeBase64",
+          "group": "transform@5"
+        },
+        {
+          "command": "yrtool.decodeBase64",
+          "group": "transform@6"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "yrtool.stringify",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "yrtool.transform",
+        "label": "转换"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Custom Formatter",
+      "properties": {
+        "yrtool.formatters": {
+          "type": "array",
+          "default": [],
+          "scope": "resource",
+          "examples": [
+            [
+              {
+                "languages": [
+                  "javascript"
+                ],
+                "command": "node",
+                "args": [
+                  "scripts/custom-formatter.js"
+                ]
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "i": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.60.0",
+    "eslint": "^7.27.0",
+    "glob": "^7.1.7",
+    "mocha": "^8.4.0",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "execa": "^4.0.3",
+    "json-bigint": "^1.0.0",
+    "json-bignumber": "^1.0.2"
+  }
+}
